@@ -1,27 +1,27 @@
 pluginManagement {
     repositories {
-        // 阿里云镜像
+        // 原始仓库(优先，KSP插件需要)
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        // 阿里云镜像(作为加速)
         maven { url = uri("https://maven.aliyun.com/repository/google") }
         maven { url = uri("https://maven.aliyun.com/repository/public") }
         maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
         maven { url = uri("https://maven.aliyun.com/repository/central") }
-        // 原始仓库(作为备用)
-        google()
-        mavenCentral()
-        gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        // 阿里云镜像
+        // 原始仓库(优先)
+        google()
+        mavenCentral()
+        // 阿里云镜像(作为加速)
         maven { url = uri("https://maven.aliyun.com/repository/google") }
         maven { url = uri("https://maven.aliyun.com/repository/public") }
         maven { url = uri("https://maven.aliyun.com/repository/central") }
-        // 原始仓库(作为备用)
-        google()
-        mavenCentral()
     }
 }
 
