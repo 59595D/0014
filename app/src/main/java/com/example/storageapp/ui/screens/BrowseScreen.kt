@@ -2,6 +2,10 @@ package com.example.storageapp.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,12 +17,11 @@ import androidx.compose.material.icons.outlined.CameraAlt
 import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.window.core.layout.WindowWidthSizeClass
-import androidx.window.core.layout.WindowSizeClass
 import coil.compose.rememberAsyncImagePainter
 import com.example.storageapp.data.*
 import com.example.storageapp.ui.components.*
@@ -26,7 +29,7 @@ import com.example.storageapp.ui.components.*
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun BrowseScreen(
-    windowWidthClass: WindowWidthSizeClass,
+    isCompactMode: Boolean,
     onNavigateToDetail: (Long) -> Unit,
     onNavigateBack: () -> Unit,
     viewModel: StorageViewModel = viewModel()
@@ -56,7 +59,7 @@ fun BrowseScreen(
     
     // 紧凑模式: 显示列表,点击跳转详情页
     // 展开/中等模式: 左右分栏
-    if (windowWidthClass == WindowWidthSizeClass.COMPACT) {
+    if (isCompactMode) {
         // 紧凑模式
         BrowseListScreen(
             searchQuery = searchQuery,

@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
                     }
                     
                     NavigationGraph(
-                        windowWidthClass = windowSizeClass,
+                        isCompactMode = windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT,
                         viewModel = viewModel,
                         requestPermission = requestPermission
                     )
@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NavigationGraph(
-    windowWidthClass: WindowWidthSizeClass,
+    isCompactMode: Boolean,
     viewModel: StorageViewModel,
     requestPermission: () -> Unit
 ) {
@@ -171,7 +171,7 @@ fun NavigationGraph(
         ) { backStackEntry ->
             val location = backStackEntry.arguments?.getString("location")
             BrowseScreen(
-                windowWidthClass = windowWidthClass,
+                isCompactMode = isCompactMode,
                 onNavigateToDetail = { itemId ->
                     navController.navigate("detail/$itemId")
                 },
